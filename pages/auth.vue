@@ -22,9 +22,11 @@ export default {
             return this.$store.state.message
         }
     },
-    asyncData({ env: { spotifyId, clientUrl }, query }) {
+    async asyncData({ env: { spotifyId, clientUrl }, query }) {
         console.log('spotifyId', spotifyId)
-        const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=${spotifyId}&response_type=code&scope=user-read-currently-playing,user-read-recently-played&redirect_uri=${clientUrl}/api/spotify/callback`
+        console.log('clientUrl', clientUrl)
+        console.log('query', query)
+        const spotifyUrl = await `https://accounts.spotify.com/authorize?client_id=${spotifyId}&response_type=code&scope=user-read-currently-playing,user-read-recently-played&redirect_uri=${clientUrl}/api/spotify/callback`
         return {
             spotifyUrl,
             query
