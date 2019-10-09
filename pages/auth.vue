@@ -31,8 +31,9 @@ export default {
         }
     },
     mounted() {
+        console.log(this.query.success, this.query.error, this.isConnected)
         if (!(this.query.success || this.query.error) && !this.isConnected) {
-            window.location = this.spotifyUrl
+            // window.location = this.spotifyUrl
         } else if (Object.keys(this.query).length !== 0) {
             window.history.replaceState(
                 {},
