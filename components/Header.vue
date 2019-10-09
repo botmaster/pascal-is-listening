@@ -1,8 +1,8 @@
 <template>
     <header>
         <h1>
-            {{ $nuxt.layout && $nuxt.layout.authorName }}
-            {{ $nuxt.layout && $nuxt.layout.titleShort }}
+            {{ this.$store.state.authorName }}
+            'is Listening'
             <nuxt-link
                 to="/auth"
                 name="auth"

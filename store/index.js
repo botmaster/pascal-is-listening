@@ -10,7 +10,8 @@ export const state = () => ({
     nowPlaying: {},
     recentlyPlayed: {},
     trackProgress: 0,
-    isPlaying: false
+    isPlaying: false,
+    authorName: process.env.authorName || 'toto'
 })
 
 export const mutations = {
@@ -38,7 +39,7 @@ export const actions = {
     async nuxtServerInit({ commit }) {
         try {
             const redisUrl = `${clientUrl}/api/spotify/data/`
-            console.log(redisUrl)
+            console.log('redisUrl', redisUrl)
             const {
                 data: { is_connected }
             } = await axios.get(`${redisUrl}is_connected`)

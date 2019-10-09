@@ -21,11 +21,12 @@ import Footer from '~/components/Footer.vue'
 
 export default {
     components: { Header, Footer },
-    titleShort: 'is Listening',
-    // authorName: 'Cher',
     computed: {
         authorName() {
-            return process.env.authorName || '??'
+            return this.$store.state.authorName
+        },
+        titleShort() {
+            return 'is Listening'
         },
         isAuth() {
             return this.$route.name === 'auth'

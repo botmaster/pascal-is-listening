@@ -6,8 +6,7 @@
             :is-playing="isPlaying"
         />
         <p v-if="!isConnected">
-            😭 {{ $nuxt.layout && $nuxt.layout.authorName }} hasn't connected
-            yet. 😭
+            😭 {{ this.$store.state.authorName }} hasn't connected yet. 😭
             <a href="http://twitter.com/codehitchhiker">Nudge her</a>
         </p>
     </section>
