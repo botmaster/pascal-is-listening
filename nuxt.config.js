@@ -48,11 +48,6 @@ export default {
         '@nuxtjs/axios',
         '@nuxtjs/dotenv'
     ],
-    env: {
-        spotifyId: process.env.SPOTIFY_CLIENT_ID,
-        clientUrl: process.env.CLIENT_URL,
-        authorName: process.env.npm_package_author_name
-    },
     /*
      ** Axios module configuration
      ** See https://axios.nuxtjs.org/options
@@ -68,5 +63,10 @@ export default {
          */
         extend(config, ctx) {}
     },
-    serverMiddleware: ['~/api']
+    serverMiddleware: ['~/api'],
+    env: {
+        spotifyId: process.env.SPOTIFY_CLIENT_ID,
+        clientUrl: process.env.CLIENT_URL,
+        authorName: process.env.npm_package_author_name
+    }
 }
