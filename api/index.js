@@ -60,12 +60,17 @@ async function callStorage(method, ...args) {
     return response
 }
 
-app.get('/spotify/callback', async ({ query: { code } }, res) => {
+app.get('/spotify/callback', async (req, res) => {
+    console.log('/spotify/callback req :', req)
+    const {
+        query: { code }
+    } = req
     try {
         const { data } = await getSpotifyToken({
             code,
             grant_type: 'authorization_code'
         })
+        console.log('/spotify/callback data :', data)
         const { access_token, refresh_token, expires_in } = data
         const {
             data: { id }
@@ -89,7 +94,7 @@ app.get('/spotify/callback', async ({ query: { code } }, res) => {
         console.error(
             `\n🚨 There was an error at /api/spotify/callback: ${err} 🚨\n`
         )
-        res.redirect(`/auth?message=${err}`)
+        res.redirect(`/auth?error=${err}`)
     }
 })
 
