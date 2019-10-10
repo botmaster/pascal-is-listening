@@ -101,6 +101,18 @@ app.get('/spotify/callback', async (req, res) => {
 
 const getSpotifyToken = (props = {}) => {
     console.log('getSpotifyToken() props', props)
+    console.log(
+        'getSpotifyToken() process.env.SPOTIFY_CLIENT_ID',
+        process.env.SPOTIFY_CLIENT_ID
+    )
+    console.log(
+        'getSpotifyToken() process.env.SPOTIFY_CLIENT_SECRET',
+        process.env.SPOTIFY_CLIENT_SECRET
+    )
+    console.log(
+        'getSpotifyToken() process.env.CLIENT_URL',
+        process.env.CLIENT_URL
+    )
     axios({
         method: 'post',
         url: 'https://accounts.spotify.com/api/token',
