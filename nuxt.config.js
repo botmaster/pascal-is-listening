@@ -47,17 +47,33 @@ export default {
     modules: [
         // Doc: https://axios.nuxtjs.org/usage
         '@nuxtjs/axios',
-        '@nuxtjs/dotenv'
+        '@nuxtjs/dotenv',
+        '@nuxtjs/robots',
+        '@nuxtjs/sitemap'
     ],
     /*
      ** Axios module configuration
      ** See https://axios.nuxtjs.org/options
      */
     axios: {},
+    robots: {
+        UserAgent: '*',
+        Disallow: ['/Grid', '/Typo']
+    },
+    sitemap: {
+        hostname: 'https://pascal-is-listening.herokuapp.com',
+        exclude: ['/Grid', '/Typo']
+    },
+    googleAnalytics: {
+        id: 'UA-143785757-2'
+    },
     /*
      ** Build configuration
      */
     build: {
+        extractCSS: {
+            spitChunks: true
+        },
         watch: ['api'],
         /*
          ** You can extend webpack config here
