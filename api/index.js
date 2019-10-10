@@ -118,7 +118,7 @@ const getSpotifyToken = (props = {}) => {
         url: 'https://accounts.spotify.com/api/token',
         params: {
             client_id: process.env.SPOTIFY_CLIENT_ID,
-            client_secret: process.env.SPOTIFY_CLIENT_SECRET,
+            client_secret: process.env.SPOTIFY_CLIENT_SECRET_ID,
             redirect_uri: `${process.env.CLIENT_URL}/api/spotify/callback`,
             ...props
         },
