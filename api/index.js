@@ -107,13 +107,13 @@ const getSpotifyToken = (props = {}) => {
     )
     console.log(
         'getSpotifyToken() process.env.SPOTIFY_CLIENT_SECRET',
-        process.env.SPOTIFY_CLIENT_SECRET
+        process.env.SPOTIFY_CLIENT_SECRET_ID
     )
     console.log(
         'getSpotifyToken() process.env.CLIENT_URL',
         process.env.CLIENT_URL
     )
-    axios({
+    return axios({
         method: 'post',
         url: 'https://accounts.spotify.com/api/token',
         params: {
