@@ -61,10 +61,11 @@ async function callStorage(method, ...args) {
 }
 
 app.get('/spotify/callback', async (req, res) => {
-    console.log('/spotify/callback req :', req)
+    console.log('/spotify/callback')
     const {
         query: { code }
     } = req
+    console.log('/spotify/callback code: ', code)
     try {
         const { data } = await getSpotifyToken({
             code,
@@ -98,7 +99,8 @@ app.get('/spotify/callback', async (req, res) => {
     }
 })
 
-const getSpotifyToken = (props = {}) =>
+const getSpotifyToken = (props = {}) => {
+    console.log('getSpotifyToken() props', props)
     axios({
         method: 'post',
         url: 'https://accounts.spotify.com/api/token',
@@ -112,6 +114,7 @@ const getSpotifyToken = (props = {}) =>
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     })
+}
 
 const spotifyBaseUrl = 'https://api.spotify.com/v1/'
 
