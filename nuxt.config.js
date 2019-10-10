@@ -49,7 +49,8 @@ export default {
         '@nuxtjs/axios',
         '@nuxtjs/dotenv',
         '@nuxtjs/robots',
-        '@nuxtjs/sitemap'
+        '@nuxtjs/sitemap',
+        '@nuxtjs/google-analytics'
     ],
     /*
      ** Axios module configuration
