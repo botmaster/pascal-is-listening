@@ -14,49 +14,53 @@
 
 <script>
 export default {
-/* eslint-disable */
-      asyncData({ env: {spotifyId, clientUrl}, query }) {
-        const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=${
-          spotifyId
-        }&response_type=code&scope=user-read-currently-playing,user-read-recently-played&redirect_uri=${
-          clientUrl
-        }/api/spotify/callback`
-        return {
-          spotifyUrl,
-          query
-        }
-      },
-      computed: {
+    computed: {
         isConnected() {
-          return this.$store.state.isConnected
+            return this.$store.state.isConnected
         },
         message() {
-          return this.$store.state.message
+            return this.$store.state.message
         }
-      },
-      mounted() {
-        const { success, error } = this.query
-        if (
-          !Boolean(success || error) &&
-          !Boolean(this.isConnected)
-        ) {
-          window.location = this.spotifyUrl
-        } else if (Boolean(Object.keys(this.query).length !== 0)) {
-          window.history.replaceState({}, document.title, window.location.pathname)
-          this.$store.commit(
-            'updateMessage',
-            success || error
-          )
-          if (Boolean(success)) {
-            this.$store.dispatch('updateConnection', true)
-          }
+    },
+    asyncData(data) {
+        console.log('asyncData(data)')
+        const {
+            env: { spotifyId, clientUrl },
+            query
+        } = data
+        console.log('spotifyId', spotifyId)
+        console.log('clientUrl', clientUrl)
+        const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=${spotifyId}&response_type=code&scope=user-read-currently-playing,user-read-recently-played&redirect_uri=${clientUrl}/api/spotify/callback`
+        return {
+            spotifyUrl,
+            query
         }
-        if (Boolean(this.isConnected)) {
-          this.$store.commit('updateMessage', "⚡ We’re Connected ⚡")
+    },
+    mounted() {
+        console.log('mounted()')
+        console.log('this.query', this.query)
+        console.log('this.isConnected', this.isConnected)
+        if (!(this.query.success || this.query.error) && !this.isConnected) {
+            window.location = this.spotifyUrl
+        } else if (Object.keys(this.query).length !== 0) {
+            window.history.replaceState(
+                {},
+                document.title,
+                window.location.pathname
+            )
+            this.$store.commit(
+                'updateMessage',
+                this.query.success || this.query.error
+            )
+            if (this.query.success) {
+                this.$store.dispatch('updateConnection', true)
+            }
         }
-      }
+        if (this.isConnected) {
+            this.$store.commit('updateMessage', "⚡ We're Connected ⚡")
+        }
     }
-    /* eslint-enbale */
+}
 </script>
 
 <style scoped>
