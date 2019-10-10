@@ -4,6 +4,7 @@
     >
         <NowPlaying
             v-if="showTrack"
+            class="my-4 md:my-12"
             :now-playing="track"
             :is-playing="isPlaying"
         />
