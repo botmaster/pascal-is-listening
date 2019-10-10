@@ -7,7 +7,10 @@
             :now-playing="track"
             :is-playing="isPlaying"
         />
-        <p v-if="!isConnected">
+        <p
+            v-if="!isConnected"
+            class="rounded-lg p-4 bg-black text-white shadow-2xl overflow-hidden"
+        >
             😭 {{ this.$store.state.authorName }} hasn't connected yet. 😭
             <a href="http://twitter.com/botmaster">Nudge him</a>
         </p>
@@ -24,7 +27,10 @@ export default {
             return this.isConnected && this.track
         },
         nowPlaying() {
-            if (Object.keys(this.$store.state.nowPlaying).length !== 0) {
+            if (
+                this.$store.state.nowPlaying &&
+                Object.keys(this.$store.state.nowPlaying).length !== 0
+            ) {
                 this.$store.dispatch('updateConnection', true)
                 return this.$store.state.nowPlaying
             }

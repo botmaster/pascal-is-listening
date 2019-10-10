@@ -5,14 +5,14 @@
             <nuxt />
         </div>
         <Footer />
-        <!-- <nuxt-link
+        <nuxt-link
             v-if="isAuthView"
             class="area-close"
             aria-hidden="true"
             to="/"
             name="index"
             >dsfdsfsdfsd</nuxt-link
-        > -->
+        >
     </div>
 </template>
 

@@ -1,15 +1,20 @@
 <template>
-    <transition name="fade" mode="out-in">
-        <section aria-live="polite">
+    <div
+        class="container mx-auto px-container md:px-container-md flex items-center"
+    >
+        <p
+            class="rounded-lg p-4 bg-black text-white shadow-2xl overflow-hidden"
+            aria-live="polite"
+        >
+            <span>{{ message }}</span>
             <nuxt-link
                 to="/"
                 name="index"
                 :aria-current="'/' === $nuxt.$route.path ? 'page' : false"
                 >Close</nuxt-link
             >
-            {{ message }}
-        </section>
-    </transition>
+        </p>
+    </div>
 </template>
 
 <script>

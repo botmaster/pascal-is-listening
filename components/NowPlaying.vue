@@ -11,7 +11,7 @@
                     :image="image"
                 /> -->
             </figure>
-            <figcaption class="md:w-1/2 metadata p-6 md:pl-0">
+            <figcaption class="md:w-1/2 metadata p-6 md:pl-0 md:pt-2">
                 <h2 aria-live="polite">{{ name }}</h2>
                 <p aria-live="polite">{{ artistsList }}</p>
                 <p :class="statusClass">

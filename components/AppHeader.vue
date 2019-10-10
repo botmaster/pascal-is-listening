@@ -2,15 +2,18 @@
     <header>
         <div class="container mx-auto px-container md:px-container-md">
             <div class="text-white py-4 md:py-6">
-                <h1>
+                <h1 class="flex items-baseline">
                     {{ this.$store.state.authorName }}
                     is Listening
                     <nuxt-link
+                        class="icon-spotify w-6 ml-4"
                         to="/auth"
                         name="auth"
                         aria-label="Login"
                         :aria-current="isAuth"
-                    />
+                    >
+                        <img src="~/assets/spotify.svg" alt="spotify" />
+                    </nuxt-link>
                 </h1>
             </div>
         </div>
@@ -28,4 +31,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.icone-spotify {
+    //
+}
+</style>
