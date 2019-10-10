@@ -106,7 +106,7 @@ const getSpotifyToken = (props = {}) => {
         process.env.SPOTIFY_CLIENT_ID
     )
     console.log(
-        'getSpotifyToken() process.env.SPOTIFY_CLIENT_SECRET',
+        'getSpotifyToken() process.env.SPOTIFY_CLIENT_SECRET_ID',
         process.env.SPOTIFY_CLIENT_SECRET_ID
     )
     console.log(
