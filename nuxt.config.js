@@ -66,7 +66,10 @@ export default {
         exclude: ['/Grid', '/Typo']
     },
     googleAnalytics: {
-        id: 'UA-143785757-2'
+        id: 'UA-143785757-2',
+        debug: {
+            enabled: true
+        }
     },
     /*
      ** Build configuration
