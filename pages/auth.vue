@@ -41,6 +41,8 @@ export default {
         console.log('this.query', this.query)
         console.log('this.isConnected', this.isConnected)
         if (!(this.query.success || this.query.error) && !this.isConnected) {
+            console.log('mounted() this.spotifyUrl', this.spotifyUrl)
+            console.log('mounted() change window.location!!!')
             window.location = this.spotifyUrl
         } else if (Object.keys(this.query).length !== 0) {
             window.history.replaceState(
