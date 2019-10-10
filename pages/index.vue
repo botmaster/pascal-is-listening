@@ -1,5 +1,7 @@
 <template>
-    <section>
+    <div
+        class="container mx-auto px-container md:px-container-md flex items-center"
+    >
         <NowPlaying
             v-if="showTrack"
             :now-playing="track"
@@ -7,9 +9,9 @@
         />
         <p v-if="!isConnected">
             😭 {{ this.$store.state.authorName }} hasn't connected yet. 😭
-            <a href="http://twitter.com/codehitchhiker">Nudge her</a>
+            <a href="http://twitter.com/botmaster">Nudge him</a>
         </p>
-    </section>
+    </div>
 </template>
 
 <script>
@@ -41,20 +43,4 @@ export default {
 }
 </script>
 
-<style scoped>
-section {
-    min-width: 300px;
-    transform: translateY(-50%);
-    max-width: 750px;
-    margin: auto;
-    padding: 1em;
-}
-
-@media (max-width: 600px) {
-    section {
-        transform: translateY(-10%) translateX(-2vw);
-        width: 65vw;
-        min-width: 200px;
-    }
-}
-</style>
+<style scoped></style>

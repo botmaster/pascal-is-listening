@@ -1,15 +1,17 @@
 <template>
     <transition name="fade">
-        <section>
-            <aside>
+        <section
+            class="md:flex bg-black text-white shadow-2xl overflow-hidden rounded-lg w-full"
+        >
+            <figure class="md:w-1/2 m-2  md:mr-8 rounded-lg overflow-hidden">
                 <img v-if="image" :src="image" alt="Album Artwork" />
-                <Progress
+                <!-- <Progress
                     :class="className"
                     :progress-percent="progress"
                     :image="image"
-                />
-            </aside>
-            <div class="metadata">
+                /> -->
+            </figure>
+            <figcaption class="md:w-1/2 metadata p-6 md:pl-0">
                 <h2 aria-live="polite">{{ name }}</h2>
                 <p aria-live="polite">{{ artistsList }}</p>
                 <p :class="statusClass">
@@ -18,18 +20,27 @@
                     >
                     <a v-if="href" :href="href">Listen?</a>
                 </p>
-            </div>
+            </figcaption>
         </section>
     </transition>
 </template>
 
 <script>
 /* eslint-disable camelcase */
-import Progress from './Progress.vue'
+// import Progress from './Progress.vue'
 
 export default {
-    components: { Progress },
-    props: ['isPlaying', 'nowPlaying'],
+    // components: { Progress },
+    props: {
+        isPlaying: {
+            type: Boolean,
+            default: false
+        },
+        nowPlaying: {
+            type: Object,
+            default: () => {}
+        }
+    },
     data() {
         return { staleTimer: '', trackTimer: '' }
     },
@@ -129,96 +140,4 @@ export default {
 }
 </script>
 
-<style scoped>
-section {
-    position: relative;
-    display: grid;
-    grid-template-columns: 42% 58%;
-    align-items: center;
-}
-aside {
-    position: relative;
-    min-width: 50px;
-}
-
-img {
-    opacity: 0;
-    position: absolute;
-    height: 0;
-    width: 0;
-}
-
-section:after,
-section:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    z-index: 0;
-}
-
-section:after {
-    transform: rotate(1deg);
-    background: rgba(255, 255, 255, 0.1);
-}
-
-section:before {
-    transform: rotate(3deg);
-    background: rgba(255, 255, 255, 0.03);
-}
-.metadata {
-    padding-left: 1.4em;
-    position: relative;
-    z-index: 2;
-}
-h2 {
-    font-family: 'Oswald', monospace;
-    margin: 0;
-    font-size: 3em;
-}
-p {
-    margin: 0;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-}
-
-.fade-enter-active {
-    transition: opacity 600ms ease-out;
-}
-.fade-leave-active {
-    opacity: 0;
-}
-.fade-enter,
-.fade-leave-to {
-    opacity: 0;
-}
-
-.status span {
-    opacity: 0.7;
-    font-size: 0.8em;
-    padding: 1em 0;
-    display: block;
-    white-space: nowrap;
-}
-.is-playing span {
-    opacity: 0;
-    transition: opacity 600ms ease-out;
-}
-
-@media (max-width: 600px) {
-    section {
-        grid-template-rows: 42% 58%;
-        grid-template-columns: 100%;
-    }
-    aside {
-        max-width: 160px;
-        margin: 0 auto;
-    }
-    .metadata {
-        text-align: center;
-        padding: 0;
-    }
-}
-</style>
+<style scoped></style>

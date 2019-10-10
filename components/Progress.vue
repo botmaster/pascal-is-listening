@@ -63,50 +63,17 @@
 
 <script>
 export default {
-    props: ['progressPercent', 'image']
+    props: {
+        progressPercent: {
+            type: Number,
+            default: 0
+        },
+        image: {
+            type: String,
+            default: null
+        }
+    }
 }
 </script>
 
-<style scoped>
-div {
-    filter: grayscale(0);
-    transform: rotate(-2deg) scale(0.9);
-}
-.is-paused {
-    filter: grayscale(80%);
-    transition: all 600ms ease-out;
-}
-svg {
-    height: 100%;
-    width: 100%;
-}
-svg.album {
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
-}
-svg.progress {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2))
-        drop-shadow(0 0 2px var(--colorBrightBlue))
-        drop-shadow(0 0 3px var(--colorBrightBlue))
-        drop-shadow(0 0 5px var(--colorBrightBlue)) opacity(65%) contrast(150%);
-}
-.bar {
-    stroke: url(#gradient);
-    stroke-width: 0.03em;
-    transform: rotate(0deg);
-    transform-origin: center;
-    animation: fill 2s reverse;
-}
-.image {
-    fill: url(#image);
-}
-@keyframes fill {
-    to {
-        stroke-dasharray: 0 100;
-    }
-}
-</style>
+<style scoped></style>
