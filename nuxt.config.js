@@ -5,6 +5,13 @@ export default {
      ** Headers of the page
      */
     head: {
+        // this htmlAttrs you need
+        htmlAttrs: {
+            lang: 'fr-fr'
+        },
+        bodyAttrs: {
+            /* id: 'js-scroll' */
+        },
         title: process.env.npm_package_name || '',
         meta: [
             { charset: 'utf-8' },
