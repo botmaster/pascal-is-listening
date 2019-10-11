@@ -13,10 +13,25 @@
                     :image="image"
                 />
             </figure>
-            <figcaption class="md:w-1/2 metadata p-6 md:pl-0 md:pt-2">
-                <h2 aria-live="polite">{{ name }}</h2>
-                <p aria-live="polite">{{ artistsList }}</p>
-                <p :class="statusClass">
+            <figcaption
+                class="relative md:w-1/2 metadata p-6 md:pl-0 md:pt-2 md:pb-2 md:flex flex-col"
+            >
+                <p class="uppercase" aria-live="polite">{{ artistsList }}</p>
+                <div class="mb-4">
+                    <h2 class="inline leading-neg-tight" aria-live="polite">
+                        {{ name }}
+                    </h2>
+                    <a
+                        class="uppercase"
+                        :href="albumUrl"
+                        target="_blank"
+                        title="Album Infos"
+                        >{{ albumName }}</a
+                    >
+                </div>
+                <!-- <p aria-live="polite">{{ albumName }}</p> -->
+
+                <p :class="statusClass" class="mt-auto">
                     <span
                         >{{ this.$store.state.authorName }} {{ status }}.</span
                     >
@@ -80,12 +95,22 @@ export default {
         name() {
             return this.nowPlaying.name
         },
+        albumName() {
+            return this.nowPlaying.album.name || '???'
+        },
+        albumUrl() {
+            const { external_urls } = this.nowPlaying.album
+            return external_urls ? external_urls.spotify : null
+        },
         status() {
             return this.isPlaying
                 ? `is playing this track with ${Math.round(
                       this.$store.state.trackProgress
                   )}% complete`
                 : 'has paused this track'
+        },
+        percent() {
+            return Math.floor(this.$store.state.trackProgress)
         }
     },
     created() {

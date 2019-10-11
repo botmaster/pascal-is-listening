@@ -22,6 +22,15 @@ module.exports = {
                 'container-md': '32px',
                 gutter: '16px',
                 'gutter-md': '16px'
+            },
+            lineHeight: {
+                'neg-tight': 0.75,
+                none: 1,
+                tight: 1.25,
+                snug: 1.375,
+                normal: 1.5,
+                relaxed: 1.625,
+                loose: 2
             }
         }
     },

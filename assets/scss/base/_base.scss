@@ -18,10 +18,14 @@ body {
 
 // Liens
 a {
-    @apply .no-underline .text-blue-500;
+    color: inherit;
+    opacity: 0.6;
+    transition: opacity, 0.2s;
+    @apply .no-underline;
 
     &:hover, &:focus {
-        @apply .no-underline .text-blue-800;
+        opacity: 1;
+        @apply .no-underline;
     }
 }
 
