@@ -75,7 +75,7 @@ export default {
     googleAnalytics: {
         id: 'UA-143785757-2',
         debug: {
-            enabled: true
+            enabled: false
         }
     },
     /*

@@ -3,13 +3,15 @@
         <section
             class="md:flex bg-black text-white shadow-2xl overflow-hidden rounded-lg w-full"
         >
-            <figure class="md:w-1/2 m-2  md:mr-8 rounded-lg overflow-hidden">
+            <figure
+                class="md:w-1/2 m-2  md:mr-8 rounded-lg overflow-hidden relative"
+            >
                 <img v-if="image" :src="image" alt="Album Artwork" />
-                <!-- <Progress
+                <Progression
                     :class="className"
                     :progress-percent="progress"
                     :image="image"
-                /> -->
+                />
             </figure>
             <figcaption class="md:w-1/2 metadata p-6 md:pl-0 md:pt-2">
                 <h2 aria-live="polite">{{ name }}</h2>
@@ -27,10 +29,10 @@
 
 <script>
 /* eslint-disable camelcase */
-// import Progress from './Progress.vue'
+import Progression from './Progression.vue'
 
 export default {
-    // components: { Progress },
+    components: { Progression },
     props: {
         isPlaying: {
             type: Boolean,

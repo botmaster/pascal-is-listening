@@ -39,7 +39,6 @@ export const actions = {
     async nuxtServerInit({ commit }) {
         try {
             const redisUrl = `${clientUrl}/api/spotify/data/`
-            console.log('redisUrl', redisUrl)
             const {
                 data: { is_connected }
             } = await axios.get(`${redisUrl}is_connected`)
