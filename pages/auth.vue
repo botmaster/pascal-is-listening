@@ -1,20 +1,22 @@
 <template>
-    <div
-        class="container mx-auto px-container md:px-container-md flex items-center"
-    >
-        <p
-            class="rounded-lg p-4 bg-black text-white shadow-2xl overflow-hidden"
-            aria-live="polite"
+    <transition name="fade" mode="out-in">
+        <div
+            class="container mx-auto px-container md:px-container-md flex items-center"
         >
-            <span>{{ message }}</span>
-            <nuxt-link
-                to="/"
-                name="index"
-                :aria-current="'/' === $nuxt.$route.path ? 'page' : false"
-                >Close</nuxt-link
+            <p
+                class="rounded-lg p-4 bg-black text-white shadow-2xl overflow-hidden"
+                aria-live="polite"
             >
-        </p>
-    </div>
+                <span>{{ message }}</span>
+                <nuxt-link
+                    to="/"
+                    name="index"
+                    :aria-current="'/' === $nuxt.$route.path ? 'page' : false"
+                    >Close</nuxt-link
+                >
+            </p>
+        </div>
+    </transition>
 </template>
 
 <script>
@@ -71,45 +73,6 @@ export default {
 </script>
 
 <style scoped>
-section {
-    position: absolute;
-    width: 30%;
-    min-width: 300px;
-    left: 0;
-    right: 0;
-    bottom: 50%;
-    margin: auto;
-    padding: 1em;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    mix-blend-mode: hard-light;
-    z-index: 2;
-}
-
-section:after,
-section:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    z-index: -1;
-}
-section:after {
-    transform: rotate(1deg);
-    background: rgba(255, 255, 255, 0.1);
-}
-section:before {
-    transform: rotate(3deg);
-    background: rgba(255, 255, 255, 0.03);
-}
-a {
-    margin: auto;
-}
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 600ms ease-out;

@@ -6,14 +6,22 @@
             <figure
                 class="md:w-1/2 m-2  md:mr-8 rounded-lg overflow-hidden relative"
             >
-                <img v-if="image" :src="image" alt="Album Artwork" />
+                <div class="relative pb-1/1">
+                    <img
+                        v-if="image"
+                        class="absolute h-full w-full object-cover"
+                        :src="image"
+                        alt="Album Artwork"
+                    />
+                </div>
+
                 <Progression
                     :class="className"
                     :progress-percent="progress"
                     :image="image"
                 />
             </figure>
-            <figcaption
+            <div
                 class="relative md:w-1/2 metadata p-6 md:pl-0 md:pt-2 md:pb-2 md:flex flex-col"
             >
                 <p class="uppercase" aria-live="polite">{{ artistsList }}</p>
@@ -37,7 +45,7 @@
                     >
                     <a v-if="href" :href="href">Listen?</a>
                 </p>
-            </figcaption>
+            </div>
         </section>
     </transition>
 </template>
@@ -167,4 +175,15 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.fade-enter-active {
+    transition: opacity 600ms ease-out;
+}
+.fade-leave-active {
+    opacity: 0;
+}
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+</style>
