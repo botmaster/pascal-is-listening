@@ -31,10 +31,11 @@ export default {
         ],
         link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
     },
+    loading: '~/components/AppMainLoading.vue',
     /*
      ** Customize the progress-bar color
      */
-    loading: { color: '#fff' },
+    // loading: { color: '#fff' },
     /*
      ** Global CSS
      */
