@@ -11,7 +11,7 @@ export const state = () => ({
     recentlyPlayed: {},
     trackProgress: 0,
     isPlaying: false,
-    authorName: process.env.authorName || 'toto'
+    authorName: 'Pascal'
 })
 
 export const mutations = {
