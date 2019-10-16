@@ -7,12 +7,18 @@
         >
             <div class="relative pb-1/1">
                 <img
-                    v-if="image"
+                    v-show="imageIsLoaded"
                     ref="image"
                     class="absolute h-full w-full object-cover"
                     :src="image"
                     alt="Album Artwork"
                 />
+                <div
+                    v-show="!imageIsLoaded"
+                    class="absolute h-full w-full flex justify-center items-center"
+                >
+                    <app-loading></app-loading>
+                </div>
             </div>
 
             <Progression
@@ -59,13 +65,15 @@
 <script>
 /* eslint-disable camelcase */
 import { TweenMax } from 'gsap'
+import imagesLoaded from 'imagesloaded'
 import Progression from './Progression.vue'
+import AppLoading from './AppLoading'
 
 // eslint-disable-next-line no-unused-vars
 const plugins = [TweenMax]
 
 export default {
-    components: { Progression },
+    components: { AppLoading, Progression },
     props: {
         isPlaying: {
             type: Boolean,
@@ -77,7 +85,7 @@ export default {
         }
     },
     data() {
-        return { staleTimer: '', trackTimer: '' }
+        return { staleTimer: '', trackTimer: '', imageIsLoaded: false }
     },
     computed: {
         className() {
@@ -147,14 +155,20 @@ export default {
                             1,
                             {
                                 opacity: 0,
-                                delay: 0.2
+                                delay: 0.5
                             },
                             0.3
                         )
+                        imagesLoaded(this.$refs.image, () => {
+                            this.imageIsLoaded = true
+                            TweenMax.from(this.$refs.image, 1, {
+                                opacity: 0
+                            })
+                        })
                     }
                 }
             },
-            immediate: true
+            immediate: false
         }
     },
     created() {
@@ -167,7 +181,28 @@ export default {
         clearInterval(this.staleTimer)
         clearInterval(this.trackTimer)
     },
-    mounted() {},
+    mounted() {
+        TweenMax.staggerFrom(
+            [
+                this.$refs.artist,
+                this.$refs.name,
+                this.$refs.albumName,
+                this.$refs.status
+            ],
+            1,
+            {
+                opacity: 0,
+                delay: 0.2
+            },
+            0.3
+        )
+        imagesLoaded(this.$refs.image, () => {
+            this.imageIsLoaded = true
+            TweenMax.from(this.$refs.image, 1, {
+                opacity: 0
+            })
+        })
+    },
     methods: {
         updateProgress(progress = 0, duration = 0) {
             this.$store.dispatch('updateProgress', { progress, duration })

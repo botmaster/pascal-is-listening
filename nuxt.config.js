@@ -64,6 +64,11 @@ export default {
         '@nuxtjs/sitemap',
         '@nuxtjs/google-analytics'
     ],
+    pageTransition: {
+        name: 'page',
+        mode: 'out-in',
+        appear: true // Dont work
+    },
     tailwindcss: {
         cssPath: '~/assets/css/lib/tailwind.css'
     },
