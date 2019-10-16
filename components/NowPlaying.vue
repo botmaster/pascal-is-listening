@@ -132,25 +132,29 @@ export default {
         }
     },
     watch: {
-        nowPlaying(newValue, oldValue) {
-            if (newValue && oldValue && newValue.name !== oldValue.name) {
-                // console.log('newvalue: ', newValue)
-                if (process.client) {
-                    TweenMax.staggerFrom(
-                        [
-                            this.$refs.artist,
-                            this.$refs.name,
-                            this.$refs.albumName,
-                            this.$refs.status
-                        ],
-                        1,
-                        {
-                            opacity: 0
-                        },
-                        0.2
-                    )
+        nowPlaying: {
+            handler(newValue, oldValue) {
+                if (newValue && oldValue && newValue.name !== oldValue.name) {
+                    // console.log('newvalue: ', newValue)
+                    if (process.client) {
+                        TweenMax.staggerFrom(
+                            [
+                                this.$refs.artist,
+                                this.$refs.name,
+                                this.$refs.albumName,
+                                this.$refs.status
+                            ],
+                            1,
+                            {
+                                opacity: 0,
+                                delay: 0.2
+                            },
+                            0.3
+                        )
+                    }
                 }
-            }
+            },
+            immediate: true
         }
     },
     created() {

@@ -64,6 +64,9 @@ export default {
         '@nuxtjs/sitemap',
         '@nuxtjs/google-analytics'
     ],
+    tailwindcss: {
+        cssPath: '~/assets/css/lib/tailwind.css'
+    },
     /*
      ** Axios module configuration
      ** See https://axios.nuxtjs.org/options
