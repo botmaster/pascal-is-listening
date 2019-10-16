@@ -1,8 +1,6 @@
 <template>
-    <transition name="fade" mode="out-in">
-        <div
-            class="container mx-auto px-container md:px-container-md flex items-center"
-        >
+    <section class="bg-white h-full flex items-center">
+        <div class="container mx-auto px-container md:px-container-md">
             <p
                 class="rounded-lg p-4 bg-black text-white shadow-2xl overflow-hidden"
                 aria-live="polite"
@@ -16,7 +14,7 @@
                 >
             </p>
         </div>
-    </transition>
+    </section>
 </template>
 
 <script>
@@ -72,14 +70,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 600ms ease-out;
-}
-
-.fade-enter,
-.fade-leave-active {
-    opacity: 0;
-}
-</style>
+<style scoped lang="scss"></style>

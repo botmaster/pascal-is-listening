@@ -1,58 +1,68 @@
 <template>
-    <transition name="fade">
-        <section
-            class="md:flex bg-black text-white shadow-2xl overflow-hidden rounded-lg w-full"
+    <section
+        class="md:flex bg-black text-white shadow-2xl overflow-hidden rounded-lg w-full"
+    >
+        <figure
+            class="md:w-1/2 m-2  md:mr-8 rounded-lg overflow-hidden relative"
         >
-            <figure
-                class="md:w-1/2 m-2  md:mr-8 rounded-lg overflow-hidden relative"
-            >
-                <div class="relative pb-1/1">
-                    <img
-                        v-if="image"
-                        class="absolute h-full w-full object-cover"
-                        :src="image"
-                        alt="Album Artwork"
-                    />
-                </div>
-
-                <Progression
-                    :class="className"
-                    :progress-percent="progress"
-                    :image="image"
+            <div class="relative pb-1/1">
+                <img
+                    v-if="image"
+                    ref="image"
+                    class="absolute h-full w-full object-cover"
+                    :src="image"
+                    alt="Album Artwork"
                 />
-            </figure>
-            <div
-                class="relative md:w-1/2 metadata p-6 md:pl-0 md:pt-2 md:pb-2 md:flex flex-col"
-            >
-                <p class="uppercase" aria-live="polite">{{ artistsList }}</p>
-                <div class="mb-4">
-                    <h2 class="inline leading-neg-tight" aria-live="polite">
-                        {{ name }}
-                    </h2>
-                    <a
-                        class="uppercase"
-                        :href="albumUrl"
-                        target="_blank"
-                        title="Album Infos"
-                        >{{ albumName }}</a
-                    >
-                </div>
-                <!-- <p aria-live="polite">{{ albumName }}</p> -->
-
-                <p :class="statusClass" class="mt-auto">
-                    <span
-                        >{{ this.$store.state.authorName }} {{ status }}.</span
-                    >
-                    <a v-if="href" :href="href">Listen?</a>
-                </p>
             </div>
-        </section>
-    </transition>
+
+            <Progression
+                :class="className"
+                :progress-percent="progress"
+                :image="image"
+            />
+        </figure>
+        <div
+            class="relative md:w-1/2 metadata p-6 md:pl-0 md:pt-2 md:pb-2 md:flex flex-col"
+        >
+            <p ref="artist" class="uppercase" aria-live="polite">
+                {{ artistsList }}
+            </p>
+
+            <div ref="title" class="mb-4">
+                <h2
+                    ref="name"
+                    class="inline leading-neg-tight"
+                    aria-live="polite"
+                >
+                    {{ name }}
+                </h2>
+                <a
+                    ref="albumName"
+                    class="uppercase inline"
+                    :href="albumUrl"
+                    target="_blank"
+                    title="Album Infos"
+                    >{{ albumName }}</a
+                >
+            </div>
+
+            <!-- <p aria-live="polite">{{ albumName }}</p> -->
+
+            <p ref="status" :class="statusClass" class="mt-auto">
+                <span>{{ this.$store.state.authorName }} {{ status }}.</span>
+                <a v-if="href" :href="href">Listen?</a>
+            </p>
+        </div>
+    </section>
 </template>
 
 <script>
 /* eslint-disable camelcase */
+import { TweenMax } from 'gsap'
 import Progression from './Progression.vue'
+
+// eslint-disable-next-line no-unused-vars
+const plugins = [TweenMax]
 
 export default {
     components: { Progression },
@@ -121,6 +131,28 @@ export default {
             return Math.floor(this.$store.state.trackProgress)
         }
     },
+    watch: {
+        nowPlaying(newValue, oldValue) {
+            if (newValue && oldValue && newValue.name !== oldValue.name) {
+                // console.log('newvalue: ', newValue)
+                if (process.client) {
+                    TweenMax.staggerFrom(
+                        [
+                            this.$refs.artist,
+                            this.$refs.name,
+                            this.$refs.albumName,
+                            this.$refs.status
+                        ],
+                        1,
+                        {
+                            opacity: 0
+                        },
+                        0.2
+                    )
+                }
+            }
+        }
+    },
     created() {
         this.getNowPlaying()
         this.staleTimer = setInterval(() => {
@@ -131,6 +163,7 @@ export default {
         clearInterval(this.staleTimer)
         clearInterval(this.trackTimer)
     },
+    mounted() {},
     methods: {
         updateProgress(progress = 0, duration = 0) {
             this.$store.dispatch('updateProgress', { progress, duration })
@@ -178,15 +211,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.fade-enter-active {
-    transition: opacity 600ms ease-out;
-}
-.fade-leave-active {
-    opacity: 0;
-}
-.fade-enter,
-.fade-leave-to {
-    opacity: 0;
-}
-</style>
+<style scoped lang="scss"></style>

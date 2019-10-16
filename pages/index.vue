@@ -1,21 +1,21 @@
 <template>
-    <div
-        class="container mx-auto px-container md:px-container-md flex items-center"
-    >
-        <NowPlaying
-            v-if="showTrack"
-            class="my-4 md:my-12"
-            :now-playing="track"
-            :is-playing="isPlaying"
-        />
-        <p
-            v-if="!isConnected"
-            class="rounded-lg p-4 bg-black text-white shadow-2xl overflow-hidden"
-        >
-            😭 {{ this.$store.state.authorName }} hasn't connected yet. 😭
-            <a href="http://twitter.com/botmaster">Nudge him</a>
-        </p>
-    </div>
+    <section class="bg-white h-full flex items-center">
+        <div class="container mx-auto px-container md:px-container-md">
+            <NowPlaying
+                v-if="showTrack"
+                class="my-4 md:my-12"
+                :now-playing="track"
+                :is-playing="isPlaying"
+            />
+            <p
+                v-if="!isConnected"
+                class="rounded-lg p-4 bg-black text-white shadow-2xl overflow-hidden"
+            >
+                😭 {{ this.$store.state.authorName }} hasn't connected yet. 😭
+                <a href="http://twitter.com/botmaster">Nudge him</a>
+            </p>
+        </div>
+    </section>
 </template>
 
 <script>

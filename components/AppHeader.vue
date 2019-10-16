@@ -2,7 +2,7 @@
     <header>
         <div class="container mx-auto px-container md:px-container-md">
             <div class="text-white py-4 md:py-6">
-                <h1 class="flex items-baseline">
+                <h1 ref="title" class="flex items-baseline">
                     {{ this.$store.state.authorName }}
                     is Listening
                     <nuxt-link
@@ -27,7 +27,8 @@ export default {
             type: Boolean,
             default: false
         }
-    }
+    },
+    mounted() {}
 }
 </script>
 

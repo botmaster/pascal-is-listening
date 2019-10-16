@@ -7,7 +7,7 @@
 //
 
 html {
-    
+
 }
 
 body {
@@ -21,7 +21,7 @@ a {
     color: inherit;
     opacity: 0.6;
     transition: opacity, 0.2s;
-    @apply .no-underline;
+    @apply .no-underline .inline-block;
 
     &:hover, &:focus {
         opacity: 1;

@@ -91,6 +91,9 @@ export default {
             spitChunks: true
         },
         watch: ['api'],
+        analyze: {
+            analyzerMode: 'static'
+        },
         /*
          ** You can extend webpack config here
          */
