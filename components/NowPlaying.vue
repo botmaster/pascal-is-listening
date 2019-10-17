@@ -42,14 +42,15 @@
                 >
                     {{ name }}
                 </h2>
-                <a
-                    ref="albumName"
-                    class="uppercase inline"
-                    :href="albumUrl"
-                    target="_blank"
-                    title="Album Infos"
-                    >{{ albumName }}</a
-                >
+                <span ref="albumName" class="inline">
+                    <a
+                        class="uppercase inline"
+                        :href="albumUrl"
+                        target="_blank"
+                        title="Album Infos"
+                        >{{ albumName }}</a
+                    >
+                </span>
             </div>
 
             <!-- <p aria-live="polite">{{ albumName }}</p> -->
@@ -155,8 +156,15 @@ export default {
                                 this.$refs.albumName,
                                 this.$refs.status
                             ],
-                            { opacity: 0 }
+                            {
+                                opacity: 0,
+                                immediateRender: true,
+                                onComplete: () => {
+                                    this.track = newValue
+                                }
+                            }
                         )
+
                         TweenMax.staggerTo(
                             [
                                 this.$refs.artist,
@@ -168,9 +176,7 @@ export default {
                             {
                                 opacity: 1,
                                 delay: 0.2,
-                                onStart: () => {
-                                    this.track = newValue
-                                }
+                                onStart: () => {}
                             },
                             0.3
                         )
