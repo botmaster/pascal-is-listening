@@ -4,7 +4,7 @@
             <NowPlaying
                 v-if="showTrack"
                 class="my-4 md:my-12"
-                :now-playing="track"
+                :now-playing="nowPlaying"
                 :is-playing="isPlaying"
             />
             <p
@@ -25,7 +25,7 @@ export default {
     components: { NowPlaying },
     computed: {
         showTrack() {
-            return this.isConnected && this.track
+            return this.isConnected && this.nowPlaying
         },
         nowPlaying() {
             if (
@@ -36,9 +36,6 @@ export default {
                 return this.$store.state.nowPlaying
             }
             return this.$store.state.recentlyPlayed
-        },
-        track() {
-            return this.nowPlaying
         },
         isPlaying() {
             return this.$store.state.isPlaying

@@ -155,7 +155,7 @@ export default {
                             1,
                             {
                                 opacity: 0,
-                                delay: 0.5
+                                delay: 1.5
                             },
                             0.3
                         )
