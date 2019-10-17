@@ -85,7 +85,12 @@ export default {
         }
     },
     data() {
-        return { staleTimer: '', trackTimer: '', imageIsLoaded: false }
+        return {
+            staleTimer: '',
+            trackTimer: '',
+            imageIsLoaded: false,
+            track: {}
+        }
     },
     computed: {
         className() {
@@ -95,7 +100,7 @@ export default {
             return this.isPlaying ? 'is-playing status' : 'status'
         },
         image() {
-            const { album, image } = this.nowPlaying
+            const { album, image } = this.track
             if (album) {
                 const { url } = album.images[0]
                 return url
@@ -109,23 +114,23 @@ export default {
             return this.$store.state.trackProgress
         },
         artistsList() {
-            const { artists } = this.nowPlaying
+            const { artists } = this.track
             return artists
                 ? artists.map((artist) => artist.name).join(', ')
                 : null
         },
         href() {
-            const { external_urls } = this.nowPlaying
+            const { external_urls } = this.track
             return external_urls ? external_urls.spotify : null
         },
         name() {
-            return this.nowPlaying.name
+            return this.track.name
         },
         albumName() {
-            return this.nowPlaying.album.name || '???'
+            return this.track.album.name || '???'
         },
         albumUrl() {
-            const { external_urls } = this.nowPlaying.album
+            const { external_urls } = this.track.album
             return external_urls ? external_urls.spotify : null
         },
         status() {
@@ -134,9 +139,6 @@ export default {
                       this.$store.state.trackProgress
                   )}% complete`
                 : 'has paused this track'
-        },
-        percent() {
-            return Math.floor(this.$store.state.trackProgress)
         }
     },
     watch: {
@@ -144,8 +146,18 @@ export default {
             handler(newValue, oldValue) {
                 if (newValue && oldValue && newValue.name !== oldValue.name) {
                     // console.log('newvalue: ', newValue)
+
                     if (process.client) {
-                        TweenMax.staggerFrom(
+                        TweenMax.set(
+                            [
+                                this.$refs.artist,
+                                this.$refs.name,
+                                this.$refs.albumName,
+                                this.$refs.status
+                            ],
+                            { opacity: 0 }
+                        )
+                        TweenMax.staggerTo(
                             [
                                 this.$refs.artist,
                                 this.$refs.name,
@@ -154,8 +166,11 @@ export default {
                             ],
                             1,
                             {
-                                opacity: 0,
-                                delay: 1.5
+                                opacity: 1,
+                                delay: 0.2,
+                                onStart: () => {
+                                    this.track = newValue
+                                }
                             },
                             0.3
                         )
@@ -173,6 +188,7 @@ export default {
     },
     created() {
         this.getNowPlaying()
+        this.track = this.nowPlaying
         this.staleTimer = setInterval(() => {
             this.getNowPlaying()
         }, 10000)
