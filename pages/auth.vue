@@ -2,7 +2,7 @@
     <section class="bg-white h-full flex items-center">
         <div class="container mx-auto px-container md:px-container-md">
             <p
-                class="rounded-lg p-4 bg-black text-white shadow-2xl overflow-hidden"
+                class="rounded-lg p-4 bg-black text-white shadow-card overflow-hidden"
                 aria-live="polite"
             >
                 <span>{{ message }}</span>

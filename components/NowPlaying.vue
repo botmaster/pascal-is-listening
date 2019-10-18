@@ -1,6 +1,6 @@
 <template>
     <section
-        class="md:flex bg-black text-white shadow-2xl overflow-hidden rounded-lg w-full"
+        class="md:flex bg-black text-white shadow-card overflow-hidden rounded-lg w-full"
     >
         <figure
             class="md:w-1/2 m-2  md:mr-8 rounded-lg overflow-hidden relative"
@@ -204,20 +204,6 @@ export default {
         clearInterval(this.trackTimer)
     },
     mounted() {
-        TweenMax.staggerFrom(
-            [
-                this.$refs.artist,
-                this.$refs.name,
-                this.$refs.albumName,
-                this.$refs.status
-            ],
-            1,
-            {
-                opacity: 0,
-                delay: 0.2
-            },
-            0.3
-        )
         imagesLoaded(this.$refs.image, () => {
             this.imageIsLoaded = true
             TweenMax.from(this.$refs.image, 1, {

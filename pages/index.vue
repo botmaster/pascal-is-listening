@@ -9,7 +9,7 @@
             />
             <p
                 v-if="!isConnected"
-                class="rounded-lg p-4 bg-black text-white shadow-2xl overflow-hidden"
+                class="rounded-lg p-4 bg-black text-white shadow-card overflow-hidden"
             >
                 😭 {{ this.$store.state.authorName }} hasn't connected yet. 😭
                 <a href="http://twitter.com/botmaster">Nudge him</a>
