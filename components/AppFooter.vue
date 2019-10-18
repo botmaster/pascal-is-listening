@@ -6,10 +6,10 @@
             This is a demo built by
             <a href="https://www.pascal-achard.me">Pascal Achard</a> following
             the excellent <a href="http://cherp.io">Cher Scarlett</a> tutorial
-            available
+            available on
             <a
                 href="https://www.smashingmagazine.com/2019/03/spotify-app-vue-nuxt-javascript/"
-                >here</a
+                >Smashing Magazine website</a
             >
             using Nuxt.js, Redis, and Spotify. Made with 💙.
         </div>

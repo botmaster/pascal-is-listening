@@ -44,6 +44,7 @@
                 </h2>
                 <span ref="albumName" class="inline">
                     <a
+                        rel="noopener"
                         class="uppercase inline"
                         :href="albumUrl"
                         target="_blank"
@@ -57,7 +58,7 @@
 
             <p ref="status" :class="statusClass" class="mt-auto">
                 <span>{{ this.$store.state.authorName }} {{ status }}.</span>
-                <a v-if="href" :href="href">Listen?</a>
+                <a v-if="href" :href="href" rel="noopener">Listen?</a>
             </p>
         </div>
     </section>
