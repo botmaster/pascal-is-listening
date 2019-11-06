@@ -96,8 +96,8 @@ export default {
         '@nuxtjs/axios',
         '@nuxtjs/dotenv',
         '@nuxtjs/robots',
-        '@nuxtjs/sitemap',
-        '@nuxtjs/google-analytics'
+        '@nuxtjs/google-analytics',
+        '@nuxtjs/sitemap'
     ],
     pageTransition: {
         name: 'page',
@@ -114,11 +114,12 @@ export default {
     axios: {},
     robots: {
         UserAgent: '*',
-        Disallow: ['/Grid', '/Typo']
+        Disallow: ['/Grid', '/Typo', '/auth']
     },
     sitemap: {
         hostname: 'https://pascal-is-listening.herokuapp.com',
-        exclude: ['/Grid', '/Typo']
+        exclude: ['/Grid', '/Typo', '/auth'],
+        cacheTime: 1000 * 60 * 30
     },
     googleAnalytics: {
         id: 'UA-143785757-2',
