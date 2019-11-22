@@ -7,10 +7,10 @@
         >
             <div class="relative pb-1/1">
                 <img
-                    v-show="imageIsLoaded"
                     ref="image"
-                    class="absolute h-full w-full object-cover"
+                    v-show="imageIsLoaded"
                     :src="image"
+                    class="absolute h-full w-full object-cover"
                     alt="Album Artwork"
                 />
                 <div
@@ -44,9 +44,9 @@
                 </h2>
                 <span ref="albumName" class="inline">
                     <a
+                        :href="albumUrl"
                         rel="noopener"
                         class="uppercase inline"
-                        :href="albumUrl"
                         target="_blank"
                         title="Album Infos"
                         >{{ albumName }}</a
