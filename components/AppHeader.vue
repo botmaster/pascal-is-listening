@@ -6,11 +6,11 @@
                     {{ this.$store.state.authorName }}
                     is Listening
                     <nuxt-link
+                        :aria-current="isAuth"
                         class="icon-spotify w-6 ml-4"
                         to="/auth"
                         name="auth"
                         aria-label="Login"
-                        :aria-current="isAuth"
                     >
                         <img src="~/assets/images/spotify.svg" alt="spotify" />
                     </nuxt-link>

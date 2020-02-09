@@ -3,9 +3,9 @@
         <div class="container mx-auto px-container md:px-container-md">
             <NowPlaying
                 v-if="showTrack"
-                class="my-4 md:my-12"
                 :now-playing="nowPlaying"
                 :is-playing="isPlaying"
+                class="my-4 md:my-12"
             />
             <p
                 v-if="!isConnected"

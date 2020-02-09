@@ -1,9 +1,9 @@
 <template>
     <div
+        :style="{ transform: 'scaleX(' + percent + ')' }"
         class="progression absolute inset-x-0 bottom-0 h-px bg-white"
         aria-hidden="true"
         style="transform-origin: left;"
-        :style="{ transform: 'scaleX(' + percent + ')' }"
     ></div>
 </template>
 

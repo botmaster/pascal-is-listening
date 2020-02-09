@@ -7,9 +7,9 @@
             >
                 <span>{{ message }}</span>
                 <nuxt-link
+                    :aria-current="'/' === $nuxt.$route.path ? 'page' : false"
                     to="/"
                     name="index"
-                    :aria-current="'/' === $nuxt.$route.path ? 'page' : false"
                     >Close</nuxt-link
                 >
             </p>

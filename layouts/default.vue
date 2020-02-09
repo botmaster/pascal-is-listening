@@ -1,6 +1,6 @@
 <template>
     <div class="layout-defaut">
-        <Header class="layout-defaut__header" :is-auth="isAuthView" />
+        <Header :is-auth="isAuthView" class="layout-defaut__header" />
         <main class="layout-defaut__content">
             <nuxt />
         </main>
