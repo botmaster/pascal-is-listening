@@ -7,8 +7,8 @@
         >
             <div class="relative pb-1/1">
                 <img
-                    ref="image"
                     v-show="imageIsLoaded"
+                    ref="image"
                     :src="image"
                     class="absolute h-full w-full object-cover"
                     alt="Album Artwork"

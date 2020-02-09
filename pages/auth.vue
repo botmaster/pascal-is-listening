@@ -19,14 +19,6 @@
 
 <script>
 export default {
-    computed: {
-        isConnected() {
-            return this.$store.state.isConnected
-        },
-        message() {
-            return this.$store.state.message
-        }
-    },
     asyncData(data) {
         console.log('asyncData(data)')
         const {
@@ -39,6 +31,14 @@ export default {
         return {
             spotifyUrl,
             query
+        }
+    },
+    computed: {
+        isConnected() {
+            return this.$store.state.isConnected
+        },
+        message() {
+            return this.$store.state.message
         }
     },
     mounted() {
