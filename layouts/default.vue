@@ -41,7 +41,7 @@ export default {
     },
     head() {
         return {
-            title: `${this.authorName} is listening ·X· A Musical App`,
+            title: `${this.authorName} is listening - A Musical App`,
             link: [
                 {
                     rel: 'stylesheet',
