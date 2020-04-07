@@ -8,6 +8,7 @@
             <div class="relative pb-1/1">
                 <img
                     v-show="imageIsLoaded"
+                    id="myImage"
                     ref="image"
                     :src="image"
                     class="absolute h-full w-full object-cover"
@@ -68,6 +69,7 @@
 /* eslint-disable camelcase */
 import { TweenMax } from 'gsap'
 import imagesLoaded from 'imagesloaded'
+import FastAverageColor from 'fast-average-color'
 import Progression from './Progression.vue'
 import AppLoading from './AppLoading'
 
@@ -181,11 +183,14 @@ export default {
                             },
                             0.3
                         )
+
                         imagesLoaded(this.$refs.image, () => {
-                            this.imageIsLoaded = true
+                            // this.imageIsLoaded = true
                             TweenMax.from(this.$refs.image, 1, {
                                 opacity: 0
                             })
+
+                            this.getTrackColor()
                         })
                     }
                 }
@@ -210,6 +215,8 @@ export default {
             TweenMax.from(this.$refs.image, 1, {
                 opacity: 0
             })
+
+            this.getTrackColor()
         })
     },
     methods: {
@@ -254,6 +261,14 @@ export default {
                     this.getNowPlaying()
                 }
             }, 100)
+        },
+
+        getTrackColor() {
+            const fac = new FastAverageColor()
+            const color = fac.getColor(document.getElementById('myImage'))
+
+            this.$store.dispatch('updateTrackColor', color)
+            console.log('color', color)
         }
     }
 }

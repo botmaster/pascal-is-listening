@@ -10,6 +10,7 @@ export const state = () => ({
     nowPlaying: {},
     recentlyPlayed: {},
     trackProgress: 0,
+    trackColor: {},
     isPlaying: false,
     authorName: 'Pascal'
 })
@@ -23,6 +24,9 @@ export const mutations = {
     },
     nowPlayingChange(state, nowPlaying) {
         state.nowPlaying = nowPlaying
+    },
+    colorChange(state, color) {
+        state.trackColor = color
     },
     isPlayingChange(state, isPlaying) {
         state.isPlaying = isPlaying
@@ -57,6 +61,10 @@ export const actions = {
     updateProgress: ({ commit, state }, props) => {
         commit('progressChange', props)
         return state.trackProgress
+    },
+    updateTrackColor: ({ commit, state }, color) => {
+        commit('colorChange', color)
+        return state.trackColor
     },
     updateTrack: ({ commit, state }, nowPlaying) => {
         commit('nowPlayingChange', nowPlaying)
