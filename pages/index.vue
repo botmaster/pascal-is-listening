@@ -1,7 +1,7 @@
 <template>
     <section
         :style="{ backgroundColor: trackColor }"
-        class="bg-white h-full flex items-center"
+        class="bg-white h-full flex items-center section"
     >
         <div class="container mx-auto px-container md:px-container-md">
             <NowPlaying
@@ -47,12 +47,16 @@ export default {
             return this.$store.state.isConnected
         },
         trackColor() {
-            return this.$store.state.trackColor
+            return this.$store.state.trackColor.hex
                 ? this.$store.state.trackColor.hex
-                : this.$store.state.trackColor.hex
+                : '#FFFFFF'
         }
     }
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.section {
+    transition: background-color 3s linear;
+}
+</style>

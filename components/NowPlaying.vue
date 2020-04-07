@@ -69,7 +69,7 @@
 /* eslint-disable camelcase */
 import { TweenMax } from 'gsap'
 import imagesLoaded from 'imagesloaded'
-// import FastAverageColor from 'fast-average-color'
+import FastAverageColor from 'fast-average-color'
 import Progression from './Progression.vue'
 import AppLoading from './AppLoading'
 
@@ -264,13 +264,13 @@ export default {
         },
 
         getTrackColor() {
-            // const fac = new FastAverageColor()
-            // const color = fac.getColor(document.getElementById('myImage'))
-
-            this.$store.dispatch('updateTrackColor', {
-                hex: '#FFFFFF'
+            const fac = new FastAverageColor()
+            const img = this.$refs.image
+            img.crossOrigin = 'Anonymous'
+            fac.getColorAsync(img).then((color) => {
+                this.$store.dispatch('updateTrackColor', color)
+                // console.log('color', color)
             })
-            // console.log('color', color)
         }
     }
 }
