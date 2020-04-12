@@ -160,7 +160,8 @@ export default {
                                 this.$refs.artist,
                                 this.$refs.name,
                                 this.$refs.albumName,
-                                this.$refs.status
+                                this.$refs.status,
+                                this.$refs.image
                             ],
                             {
                                 opacity: 0,
@@ -188,8 +189,8 @@ export default {
                         )
 
                         imagesLoaded(this.$refs.image, () => {
-                            TweenMax.from(this.$refs.image, 1, {
-                                opacity: 0,
+                            TweenMax.to(this.$refs.image, 1, {
+                                opacity: 1,
                                 onComplete: () => {
                                     this.getTrackColor()
                                 }
