@@ -93,7 +93,8 @@ export default {
             staleTimer: '',
             trackTimer: '',
             imageIsLoaded: false,
-            track: {}
+            track: {},
+            fac: null
         }
     },
     computed: {
@@ -212,6 +213,7 @@ export default {
     beforeDestroy() {
         clearInterval(this.staleTimer)
         clearInterval(this.trackTimer)
+        this.fac.destroy()
     },
     mounted() {
         imagesLoaded(this.$refs.image, () => {
@@ -270,10 +272,12 @@ export default {
         },
 
         getTrackColor() {
-            const fac = new FastAverageColor()
+            if (!this.fac) {
+                this.fac = new FastAverageColor()
+            }
             const img = this.$refs.image
             img.crossOrigin = 'Anonymous'
-            fac.getColorAsync(img).then((color) => {
+            this.fac.getColorAsync(img).then((color) => {
                 this.$store.dispatch('updateTrackColor', color)
                 // console.log('color', color)
             })
