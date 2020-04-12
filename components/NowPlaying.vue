@@ -187,13 +187,14 @@ export default {
                         )
 
                         imagesLoaded(this.$refs.image, () => {
-                            this.imageIsLoaded = true
-
                             TweenMax.from(this.$refs.image, 1, {
-                                opacity: 0
+                                opacity: 0,
+                                onComplete: () => {
+                                    this.getTrackColor()
+                                }
                             })
 
-                            this.getTrackColor()
+                            this.imageIsLoaded = true
                         })
                     }
                 }
