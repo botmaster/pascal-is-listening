@@ -3,7 +3,7 @@
         class="md:flex bg-black text-white shadow-card overflow-hidden rounded-lg w-full"
     >
         <figure
-            class="md:w-1/2 m-2  md:mr-8 rounded-lg overflow-hidden relative"
+            class="md:w-1/2 m-2 md:mr-8 rounded-lg overflow-hidden relative"
         >
             <div class="relative pb-1/1">
                 <img
