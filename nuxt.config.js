@@ -138,6 +138,7 @@ export default {
         analyze: {
             analyzerMode: 'static'
         },
+        transpile: ['gsap'],
         /*
          ** You can extend webpack config here
          */

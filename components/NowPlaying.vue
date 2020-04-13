@@ -67,14 +67,16 @@
 
 <script>
 /* eslint-disable camelcase */
-import { TweenMax } from 'gsap'
+import { gsap } from 'gsap'
 import imagesLoaded from 'imagesloaded'
 import FastAverageColor from 'fast-average-color'
 import Progression from './Progression.vue'
 import AppLoading from './AppLoading'
 
-// eslint-disable-next-line no-unused-vars
-const plugins = [TweenMax]
+// without this line, PixiPlugin and MotionPathPlugin may get dropped by your bundler (tree shaking)...
+if (process.client) {
+    gsap.registerPlugin()
+}
 
 export default {
     components: { AppLoading, Progression },
@@ -149,13 +151,13 @@ export default {
     watch: {
         nowPlaying: {
             handler(newValue, oldValue) {
-                if (newValue && oldValue && newValue.name !== oldValue.name) {
-                    // console.log('newvalue: ', newValue)
+                console.log('newvalue: ', newValue)
 
+                if (newValue && oldValue && newValue.name !== oldValue.name) {
                     if (process.client) {
                         this.imageIsLoaded = false
 
-                        TweenMax.set(
+                        gsap.set(
                             [
                                 this.$refs.artist,
                                 this.$refs.name,
@@ -172,7 +174,7 @@ export default {
                             }
                         )
 
-                        TweenMax.staggerTo(
+                        gsap.to(
                             [
                                 this.$refs.artist,
                                 this.$refs.name,
@@ -183,13 +185,12 @@ export default {
                             {
                                 opacity: 1,
                                 delay: 0.2,
-                                onStart: () => {}
-                            },
-                            0.3
+                                stagger: 0.2
+                            }
                         )
 
                         imagesLoaded(this.$refs.image, () => {
-                            TweenMax.to(this.$refs.image, 1, {
+                            gsap.to(this.$refs.image, 1, {
                                 opacity: 1,
                                 onComplete: () => {
                                     this.getTrackColor()
@@ -218,7 +219,7 @@ export default {
     },
     mounted() {
         imagesLoaded(this.$refs.image, () => {
-            TweenMax.from(this.$refs.image, 1, {
+            gsap.from(this.$refs.image, 1, {
                 opacity: 0,
                 onComplete: () => {
                     this.getTrackColor()
