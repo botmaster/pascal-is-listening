@@ -12,7 +12,12 @@
                         name="auth"
                         aria-label="Login"
                     >
-                        <img src="~/assets/images/spotify.svg" alt="spotify" />
+                        <img
+                            width="24"
+                            height="24"
+                            src="~/assets/images/spotify.svg"
+                            alt="spotify"
+                        />
                     </nuxt-link>
                 </h1>
             </div>
