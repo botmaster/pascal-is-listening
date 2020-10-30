@@ -18,24 +18,24 @@
         "@nuxtjs/robots": "^2.4.2",
         "@nuxtjs/sitemap": "^2.4.0",
         "async-redis": "^1.1.7",
-        "fast-average-color": "^6.1.0",
+        "fast-average-color": "^6.2.0",
         "gsap": "^3.5.1",
         "imagesloaded": "^4.1.4",
-        "nuxt": "^2.14.6"
+        "nuxt": "^2.14.7"
     },
     "devDependencies": {
-        "@nuxtjs/eslint-config": "^3.1.0",
+        "@nuxtjs/eslint-config": "^4.0.0",
         "@nuxtjs/eslint-module": "^3.0.0",
         "@nuxtjs/google-analytics": "^2.4.0",
-        "@nuxtjs/tailwindcss": "^3.1.0",
+        "@nuxtjs/tailwindcss": "^3.2.0",
         "babel-eslint": "^10.1.0",
-        "eslint": "^7.11.0",
-        "eslint-config-prettier": "^6.12.0",
+        "eslint": "^7.12.1",
+        "eslint-config-prettier": "^6.15.0",
         "eslint-plugin-nuxt": ">=1.0.0",
         "eslint-plugin-prettier": "^3.1.4",
         "node-sass": "^4.14.1",
-        "nodemon": "^2.0.4",
+        "nodemon": "^2.0.6",
         "prettier": "^2.1.2",
-        "sass-loader": "^10.0.3"
+        "sass-loader": "^10.0.4"
     }
 }
