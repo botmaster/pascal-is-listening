@@ -51,5 +51,8 @@ module.exports = {
         }
     },
     variants: {},
-    plugins: []
+    plugins: [],
+    future: {
+        purgeLayersByDefault: true
+    }
 }
