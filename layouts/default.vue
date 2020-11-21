@@ -22,6 +22,18 @@ import Footer from '~/components/AppFooter.vue'
 
 export default {
     components: { Header, Footer },
+    head() {
+        return {
+            title: `${this.authorName} is listening - A Musical App`,
+            link: [
+                {
+                    rel: 'stylesheet',
+                    href:
+                        'https://fonts.googleapis.com/css?family=Bungee+Hairline|Oswald'
+                }
+            ]
+        }
+    },
     computed: {
         authorName() {
             return this.$store.state.authorName
@@ -37,18 +49,6 @@ export default {
         },
         rootClass() {
             return this.isAuthView ? 'auth base' : 'base'
-        }
-    },
-    head() {
-        return {
-            title: `${this.authorName} is listening - A Musical App`,
-            link: [
-                {
-                    rel: 'stylesheet',
-                    href:
-                        'https://fonts.googleapis.com/css?family=Bungee+Hairline|Oswald'
-                }
-            ]
         }
     }
 }

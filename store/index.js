@@ -39,7 +39,6 @@ export const mutations = {
     }
 }
 export const actions = {
-    // eslint-disable-next-line require-await
     async nuxtServerInit({ commit }) {
         try {
             const redisUrl = `${clientUrl}/api/spotify/data/`
