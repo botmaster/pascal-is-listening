@@ -4,6 +4,9 @@
     "description": "What I&#39;m listening to on spotify",
     "author": "botmaster",
     "private": true,
+    "engines": {
+        "node": "14.19"
+    },
     "scripts": {
         "dev": "nodemon --watch api --exec \"nuxt\"",
         "build": "nuxt build",
