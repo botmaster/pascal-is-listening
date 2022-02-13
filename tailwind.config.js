@@ -49,10 +49,5 @@ module.exports = {
                 none: 'none'
             }
         }
-    },
-    variants: {},
-    plugins: [],
-    future: {
-        purgeLayersByDefault: true
     }
 }

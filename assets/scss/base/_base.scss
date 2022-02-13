@@ -7,7 +7,6 @@
 //
 
 html {
-
 }
 
 body {
@@ -15,17 +14,16 @@ body {
     @apply font-rubik-regular text-gray-800 bg-black;
 }
 
-
 // Liens
 a {
     color: inherit;
     opacity: 0.6;
     transition: opacity, 0.2s;
-    @apply .no-underline .inline-block;
+    @apply no-underline inline-block;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         opacity: 1;
-        @apply .no-underline;
+        @apply no-underline;
     }
 }
-

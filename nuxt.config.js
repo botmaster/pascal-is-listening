@@ -104,9 +104,6 @@ export default {
         mode: 'out-in',
         appear: true // Dont work
     },
-    tailwindcss: {
-        cssPath: '~/assets/css/lib/tailwind.css'
-    },
     /*
      ** Axios module configuration
      ** See https://axios.nuxtjs.org/options
