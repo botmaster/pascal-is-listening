@@ -25,13 +25,13 @@
         "fast-average-color": "^7.0.1",
         "gsap": "^3.5.1",
         "imagesloaded": "^4.1.4",
-        "nuxt": "^2.14.7"
+        "nuxt": "^2.15"
     },
     "devDependencies": {
         "@nuxtjs/eslint-config": "^5.0.0",
         "@nuxtjs/eslint-module": "^3.0.0",
         "@nuxtjs/google-analytics": "^2.4.0",
-        "@nuxtjs/tailwindcss": "^3.2.0",
+        "@nuxtjs/tailwindcss": "^5.0.0-4",
         "babel-eslint": "^10.1.0",
         "eslint": "^7.12.1",
         "eslint-config-prettier": "^6.15.0",
