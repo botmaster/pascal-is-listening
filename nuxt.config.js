@@ -99,7 +99,6 @@ export default {
         '@nuxtjs/robots',
         '@nuxtjs/sitemap'
     ],
-    devModules: ['@nuxtjs/eslint-module'],
     pageTransition: {
         name: 'page',
         mode: 'out-in',
@@ -115,7 +114,7 @@ export default {
         Disallow: ['/Grid', '/Typo', '/auth']
     },
     sitemap: {
-        hostname: 'https://pascal-is-listening.herokuapp.com',
+        hostname: 'https://pascal-is-listening.onrender.com',
         exclude: ['/Grid', '/Typo', '/auth'],
         cacheTime: 1000 * 60 * 30
     },
