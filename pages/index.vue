@@ -14,8 +14,8 @@
                 v-if="!isConnected"
                 class="rounded-lg p-4 bg-black text-white shadow-card overflow-hidden"
             >
-                😭 {{ this.$store.state.authorName }} hasn't connected yet. 😭
-                <a href="http://twitter.com/botmaster">Nudge him</a>
+                😭 {{ $store.state.authorName }} hasn't connected yet. 😭
+                <a href="https://twitter.com/botmaster">Nudge him</a>
             </p>
         </div>
     </section>
