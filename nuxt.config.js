@@ -99,6 +99,7 @@ export default {
         '@nuxtjs/robots',
         '@nuxtjs/sitemap'
     ],
+    devModules: ['@nuxtjs/eslint-module'],
     pageTransition: {
         name: 'page',
         mode: 'out-in',
