@@ -58,7 +58,7 @@
             <!-- <p aria-live="polite">{{ albumName }}</p> -->
 
             <p ref="status" :class="statusClass" class="mt-auto">
-                <span>{{ this.$store.state.authorName }} {{ status }}.</span>
+                <span>{{ $store.state.authorName }} {{ status }}.</span>
                 <a v-if="href" :href="href" rel="noopener">Listen?</a>
             </p>
         </div>
@@ -70,7 +70,7 @@
 import { gsap } from 'gsap'
 import imagesLoaded from 'imagesloaded'
 import FastAverageColor from 'fast-average-color'
-import Progression from './Progression.vue'
+import Progression from './ProgressionBar.vue'
 import AppLoading from './AppLoading'
 
 // without this line, PixiPlugin and MotionPathPlugin may get dropped by your bundler (tree shaking)...
@@ -212,7 +212,7 @@ export default {
             this.getNowPlaying()
         }, 10000)
     },
-    beforeDestroy() {
+    beforeUnmount() {
         clearInterval(this.staleTimer)
         clearInterval(this.trackTimer)
         this.fac.destroy()

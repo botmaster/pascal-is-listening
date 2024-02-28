@@ -83,8 +83,6 @@ export default {
      ** Nuxt.js dev-modules
      */
     buildModules: [
-        // Doc: https://github.com/nuxt-community/eslint-module
-        '@nuxtjs/eslint-module',
         // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
         '@nuxtjs/tailwindcss',
         '@nuxtjs/google-analytics'
@@ -135,11 +133,7 @@ export default {
         analyze: {
             analyzerMode: 'static'
         },
-        transpile: ['gsap'],
-        /*
-         ** You can extend webpack config here
-         */
-        extend(config, ctx) {}
+        transpile: ['gsap']
     },
     serverMiddleware: ['~/api'],
     env: {

@@ -1,4 +1,4 @@
-<template functional>
+<template>
     <footer>
         <div
             class="container mx-auto px-container md:px-container-md text-white py-4 md:py-6"
@@ -15,8 +15,3 @@
         </div>
     </footer>
 </template>
-
-<style scoped>
-footer {
-}
-</style>

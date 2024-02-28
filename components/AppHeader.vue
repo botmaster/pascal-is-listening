@@ -3,7 +3,7 @@
         <div class="container mx-auto px-container md:px-container-md">
             <div class="text-white py-4 md:py-6">
                 <h1 ref="title" class="flex items-baseline">
-                    {{ this.$store.state.authorName }}
+                    {{ $store.state.authorName }}
                     is Listening
                     <nuxt-link
                         :aria-current="isAuth"

@@ -10,9 +10,17 @@ require('dotenv').config()
 const app = express()
 app.use(express.json())
 
+const theRedisClient = null
+
 // Redis
 
 function connectToRedis() {
+
+    if(theRedisClient && redisClient.connected) {
+        console.log('🎉 Redis client already connected 🎉')
+        return redisClient
+    }
+
     const redisClient = redis.createClient(process.env.REDIS_URL)
     redisClient.on('connect', () => {
         console.log('\n🎉 Redis client connected 🎉\n')
@@ -26,6 +34,7 @@ function connectToRedis() {
 // Express app
 
 app.all('/spotify/data/:key', async ({ params: { key }, query }, res) => {
+    console.log('/spotify/data/:key', key, query)
     try {
         if (key === ('refresh_token' || 'access_token'))
             throw { error: '🔒 Cannot get protected stores. 🔒' }
@@ -56,7 +65,12 @@ function storageArgs(key, props) {
 async function callStorage(method, ...args) {
     const redisClient = connectToRedis()
     const response = await redisClient[method](...args)
-    redisClient.quit()
+
+    // Check if redis is already quit
+    if (redisClient.connected) {
+        console.log('🚪 Closing Redis connection 🚪')
+        redisClient.quit()
+    }
     return response
 }
 
@@ -80,9 +94,11 @@ app.get('/spotify/callback', async (req, res) => {
         if (id !== process.env.SPOTIFY_USER_ID)
             throw "🤖 You aren't the droid we're looking for. 🤖"
 
-        callStorage(...storageArgs('is_connected', { value: true }))
-        callStorage(...storageArgs('refresh_token', { value: refresh_token }))
-        callStorage(
+        await callStorage(...storageArgs('is_connected', { value: true }))
+        await callStorage(
+            ...storageArgs('refresh_token', { value: refresh_token })
+        )
+        await callStorage(
             ...storageArgs('access_token', {
                 value: access_token,
                 expires: expires_in
@@ -153,9 +169,13 @@ async function getAccessToken() {
             value: access_token,
             expires: expires_in
         })
-        callStorage(...storageArgs('access_token', { ...accessTokenObj }))
+        await callStorage(...storageArgs('access_token', { ...accessTokenObj }))
     }
-    redisClient.quit()
+    // Check if redis is already quit
+    if (redisClient.connected) {
+        console.log('🚪 Closing Redis connection 🚪')
+        redisClient.quit()
+    }
     return accessTokenObj.value
 }
 
@@ -172,7 +192,7 @@ app.get('/spotify/now-playing/', async (req, res) => {
             }
         )
         const { data } = response
-        setLastPlayed(access_token, data)
+        await setLastPlayed(access_token, data)
         const reply = await callStorage('get', 'last_played')
         res.send({
             item: JSON.parse(reply),
@@ -207,7 +227,7 @@ function postStoredTrack(props) {
         ...storageArgs('last_played', {
             body: props
         })
-    )
+    ).then((reply) => console.log('postStoredTrack reply', reply))
 }
 
 module.exports = {
