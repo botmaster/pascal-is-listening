@@ -26,6 +26,7 @@ function connectToRedis() {
 // Express app
 
 app.all('/spotify/data/:key', async ({ params: { key }, query }, res) => {
+    console.log('/spotify/data/:key', key, query)
     try {
         if (key === ('refresh_token' || 'access_token'))
             throw { error: '🔒 Cannot get protected stores. 🔒' }
@@ -56,7 +57,12 @@ function storageArgs(key, props) {
 async function callStorage(method, ...args) {
     const redisClient = connectToRedis()
     const response = await redisClient[method](...args)
-    redisClient.quit()
+
+    // Check if redis is already quit
+    if (redisClient.connected) {
+        console.log('🚪 Closing Redis connection 🚪')
+        redisClient.quit()
+    }
     return response
 }
 
@@ -155,7 +161,11 @@ async function getAccessToken() {
         })
         callStorage(...storageArgs('access_token', { ...accessTokenObj }))
     }
-    redisClient.quit()
+    // Check if redis is already quit
+    if (redisClient.connected) {
+        console.log('🚪 Closing Redis connection 🚪')
+        redisClient.quit()
+    }
     return accessTokenObj.value
 }
 
