@@ -58,7 +58,7 @@
             <!-- <p aria-live="polite">{{ albumName }}</p> -->
 
             <p ref="status" :class="statusClass" class="mt-auto">
-                <span>{{ this.$store.state.authorName }} {{ status }}.</span>
+                <span>{{ $store.state.authorName }} {{ status }}.</span>
                 <a v-if="href" :href="href" rel="noopener">Listen?</a>
             </p>
         </div>
@@ -212,7 +212,7 @@ export default {
             this.getNowPlaying()
         }, 10000)
     },
-    beforeDestroy() {
+    beforeUnmount() {
         clearInterval(this.staleTimer)
         clearInterval(this.trackTimer)
         this.fac.destroy()

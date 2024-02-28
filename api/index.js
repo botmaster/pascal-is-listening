@@ -87,7 +87,9 @@ app.get('/spotify/callback', async (req, res) => {
             throw "🤖 You aren't the droid we're looking for. 🤖"
 
         await callStorage(...storageArgs('is_connected', { value: true }))
-        await callStorage(...storageArgs('refresh_token', { value: refresh_token }))
+        await callStorage(
+            ...storageArgs('refresh_token', { value: refresh_token })
+        )
         await callStorage(
             ...storageArgs('access_token', {
                 value: access_token,

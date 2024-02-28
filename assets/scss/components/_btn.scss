@@ -12,7 +12,9 @@
 
     &--black {
         @apply bg-transparent text-black border border-black;
-        transition: color 0.4s, border-color 0.4s;
+        transition:
+            color 0.4s,
+            border-color 0.4s;
 
         &:hover {
             @apply bg-black text-white border border-black;
@@ -21,7 +23,9 @@
 
     &--ghost {
         @apply bg-transparent text-white border border-white;
-        transition: color 0.4s, border-color 0.4s;
+        transition:
+            color 0.4s,
+            border-color 0.4s;
 
         &:hover {
             @apply bg-black text-white border-black;

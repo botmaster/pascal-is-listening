@@ -28,8 +28,7 @@ export default {
             link: [
                 {
                     rel: 'stylesheet',
-                    href:
-                        'https://fonts.googleapis.com/css?family=Bungee+Hairline|Oswald'
+                    href: 'https://fonts.googleapis.com/css?family=Bungee+Hairline|Oswald'
                 }
             ]
         }
