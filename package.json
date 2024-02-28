@@ -23,7 +23,7 @@
         "express": "^4.17.2",
         "fast-average-color": "^7.0.1",
         "gsap": "^3.5.1",
-        "imagesloaded": "^4.1.4",
+        "imagesloaded": "^5.0.0",
         "nuxt": "^2.15"
     },
     "devDependencies": {

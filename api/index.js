@@ -10,9 +10,17 @@ require('dotenv').config()
 const app = express()
 app.use(express.json())
 
+const theRedisClient = null
+
 // Redis
 
 function connectToRedis() {
+
+    if(theRedisClient && redisClient.connected) {
+        console.log('🎉 Redis client already connected 🎉')
+        return redisClient
+    }
+
     const redisClient = redis.createClient(process.env.REDIS_URL)
     redisClient.on('connect', () => {
         console.log('\n🎉 Redis client connected 🎉\n')
