@@ -133,11 +133,7 @@ export default {
         analyze: {
             analyzerMode: 'static'
         },
-        transpile: ['gsap'],
-        /*
-         ** You can extend webpack config here
-         */
-        extend(config, ctx) {}
+        transpile: ['gsap']
     },
     serverMiddleware: ['~/api'],
     env: {

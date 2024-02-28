@@ -1,10 +1,10 @@
 <template>
     <div class="layout-defaut">
-        <Header :is-auth="isAuthView" class="layout-defaut__header" />
+        <AppHeader :is-auth="isAuthView" class="layout-defaut__header" />
         <main class="layout-defaut__content">
             <nuxt />
         </main>
-        <Footer class="layout-defaut__footer" />
+        <AppFooter class="layout-defaut__footer" />
         <!--<nuxt-link
             v-if="isAuthView"
             class="area-close"
@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import Header from '~/components/AppHeader.vue'
-import Footer from '~/components/AppFooter.vue'
+import AppHeader from '~/components/AppHeader.vue'
+import AppFooter from '~/components/AppFooter.vue'
 
 export default {
-    components: { Header, Footer },
+    components: { AppHeader, AppFooter },
     head() {
         return {
             title: `${this.authorName} is listening - A Musical App`,

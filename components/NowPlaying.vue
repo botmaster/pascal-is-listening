@@ -70,7 +70,7 @@
 import { gsap } from 'gsap'
 import imagesLoaded from 'imagesloaded'
 import FastAverageColor from 'fast-average-color'
-import Progression from './Progression.vue'
+import Progression from './ProgressionBar.vue'
 import AppLoading from './AppLoading'
 
 // without this line, PixiPlugin and MotionPathPlugin may get dropped by your bundler (tree shaking)...
