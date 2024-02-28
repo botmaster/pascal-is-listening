@@ -86,9 +86,9 @@ app.get('/spotify/callback', async (req, res) => {
         if (id !== process.env.SPOTIFY_USER_ID)
             throw "🤖 You aren't the droid we're looking for. 🤖"
 
-        callStorage(...storageArgs('is_connected', { value: true }))
-        callStorage(...storageArgs('refresh_token', { value: refresh_token }))
-        callStorage(
+        await callStorage(...storageArgs('is_connected', { value: true }))
+        await callStorage(...storageArgs('refresh_token', { value: refresh_token }))
+        await callStorage(
             ...storageArgs('access_token', {
                 value: access_token,
                 expires: expires_in
@@ -159,7 +159,7 @@ async function getAccessToken() {
             value: access_token,
             expires: expires_in
         })
-        callStorage(...storageArgs('access_token', { ...accessTokenObj }))
+        await callStorage(...storageArgs('access_token', { ...accessTokenObj }))
     }
     // Check if redis is already quit
     if (redisClient.connected) {
@@ -182,7 +182,7 @@ app.get('/spotify/now-playing/', async (req, res) => {
             }
         )
         const { data } = response
-        setLastPlayed(access_token, data)
+        await setLastPlayed(access_token, data)
         const reply = await callStorage('get', 'last_played')
         res.send({
             item: JSON.parse(reply),
@@ -217,7 +217,7 @@ function postStoredTrack(props) {
         ...storageArgs('last_played', {
             body: props
         })
-    )
+    ).then((reply) => console.log('postStoredTrack reply', reply))
 }
 
 module.exports = {
